@@ -1,0 +1,27 @@
+# Local state — never commit
+_token.txt
+scripts/_token.txt
+.git-credentials
+config.json
+last-api-push.json
+*.log
+_gh.png
+
+# Private scratch / one-off experiment scripts
+scripts/_*.ps1
+scripts/gh-state.mjs
+
+# Node / Python
+node_modules/
+__pycache__/
+*.pyc
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Scratch
+_commitmsg.txt
