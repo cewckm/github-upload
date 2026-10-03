@@ -1,0 +1,45 @@
+{
+  "name": "dsh-skill-github-upload",
+  "version": "1.0.0",
+  "private": true,
+  "description": "把本地代码或技能包发布到 GitHub——含无凭据、git push 被网络阻断、用户首次使用 GitHub 等场景下的建仓库、认证、提交、推送与校验。",
+  "type": "module",
+  "main": "plugin/index.js",
+  "exports": {
+    ".": "./plugin/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "plugin",
+    "skill",
+    "scripts",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "skill": {
+      "name": "github-upload",
+      "bundle": "./scripts",
+      "docs": "./docs"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "skill",
+    "github",
+    "publish",
+    "api-push"
+  ],
+  "license": "MIT"
+}
