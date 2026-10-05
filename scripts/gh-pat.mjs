@@ -22,8 +22,12 @@ const TOKEN_NOTE = `dsh-github-upload ${new Date().toISOString().replace('T', ' 
 /** Minimal CDP connection: this script only needs one page and Runtime.evaluate. */
 async function connect() {
   const list = await (await fetch(`http://127.0.0.1:${PORT}/json/list`)).json();
-  const page = list.find((x) => x.type === 'page');
+  // Several windows may share the debug port (more than one browser on this machine).
+  // Pick a github.com page explicitly, otherwise "the first page" can belong to another window.
+  const pages = list.filter((x) => x.type === 'page');
+  const page = pages.find((x) => /github\.com/.test(x.url ?? '')) ?? pages[0];
   if (!page) throw new Error(`no page target on port ${PORT} — run: node launch-gh.mjs`);
+  console.log(`[gh-pat] target: ${String(page.url).slice(0, 70)}`);
   const ws = await new Promise((res, rej) => {
     const s = new WebSocket(page.webSocketDebuggerUrl);
     s.onopen = () => res(s);
